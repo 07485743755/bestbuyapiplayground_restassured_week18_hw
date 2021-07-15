@@ -113,11 +113,17 @@ public class SearchJsonPathExample {
     @Test
     public void getStoreServicesOfSonyExperienceServices(){
 
-        //HashMap<String,Object> services=new HashMap<>();
+
+        HashMap<String,Object> services=new HashMap<>();
+
+        services=response.extract().path("data[3].services[7].storeservices");
+        System.out.println(services);
+
+       /* //HashMap<String,Object> services=new HashMap<>();
         List<Object> services=new ArrayList<>();
         services =response.extract().path("data.findAll{it.services.name=='Sony Experience'}.storeservices");
         System.out.println("Services stores are : "+services);
-
+*/
     }
 
     //11) Get all the storeId of all the store

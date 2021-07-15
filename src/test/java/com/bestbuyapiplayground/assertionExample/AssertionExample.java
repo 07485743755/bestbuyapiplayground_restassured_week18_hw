@@ -49,7 +49,7 @@ public class AssertionExample {
     @Test
     public void verifyMultipleName(){
 
-        response.body("data.name",hasItems("Inver Grove Heights, Roseville, Burnsville, Maplewood, Northtown, string, Fargo, Rochester, Oakdale, West Des Moines"));
+        response.body("data.name",hasItems("Inver Grove Heights", "Roseville", "Burnsville", "Maplewood", "Northtown", "string", "Fargo", "Rochester", "Oakdale"," West Des Moines"));
     }
 
    // 5. Verify the storied inside storeservices of the third store of second services
@@ -76,7 +76,8 @@ public class AssertionExample {
     @Test
     public void verifyName(){
 
-        response.body("data.findAll{it.id==15}",hasItem(hasEntry("name","Oakdale")));
+        response.body("data[8].name",equalTo("Oakdale"));
+       // response.body("data.findAll{it.id==15}",hasItem(hasEntry("name","Oakdale")));
     }
 
     //9. Verify the storeId = 12 for the 6th store
@@ -84,10 +85,15 @@ public class AssertionExample {
     public void verifyStoreIdOfSixthStore(){
 
         response.body("data.findAll{it.id==7}",hasItem(hasEntry("services.storeservices.storeId",12)));
+        response.body("data[5].services[1].storeservices.storeId",equalTo(12));
     }
 
 
     //10. Verify the serviceId = 14 for the 7th store
+    @Test
+    public void verifyServiceId(){
 
+        response.body("data[6].services[1].storeservices.serviceId",equalTo(2));
+    }
 
 }
